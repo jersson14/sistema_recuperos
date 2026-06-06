@@ -37,6 +37,7 @@ if (!isset($_SESSION['S_ID'])) {
             <button class="btn btn-success float-right" onclick="AbrirRegistro()"><i class="fas fa-plus"></i> Nuevo Registro</button>
 
           </div>
+          
           <div class="table-responsive" style="text-align:left">
             <div class="card-body">
               <div class="row" style="border: 1px solid #ccc; padding: 15px; border-radius: 8px;">

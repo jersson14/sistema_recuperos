@@ -1,2 +1,42 @@
-recupero.sql
+# Base de datos
+*.sql
+*.sql.gz
+*.sql.bz2
+
+# Configuración de conexión real
 model/model_conexion.php
+
+# Archivos subidos por usuarios
+Fotos/
+controller/practicas_paciente/filepracticas/
+
+# Documentos generados / manuales internos
+*.pdf
+*.docx
+*.doc
+
+# Entornos y configuración local
+.env
+.env.local
+config.local.php
+
+# IDE / editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+nbproject/
+.netbeans/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs y cachés
+*.log
+/logs/
+error_log
+
+# Temporales PHP
+*.cache
