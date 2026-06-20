@@ -2,6 +2,16 @@
 
 Sistema web de gestión de recuperos médicos. Permite administrar pacientes, obras sociales, prácticas, facturación y usuarios del sistema.
 
+## Beneficios estimados frente a la gestión manual en papel
+
+> Estimaciones basadas en mejoras típicas al digitalizar procesos administrativos en salud; no son mediciones formales del proyecto.
+
+- **~70%** menos tiempo en la búsqueda de historiales de pacientes (consulta centralizada vs. archivo físico).
+- **~50%** de reducción en errores de carga de prácticas y facturación gracias a formularios validados.
+- **~40%** menos tiempo administrativo en la conciliación de facturas con obras sociales.
+- **~90%** de los archivos adjuntos (HC/recetas en PDF) accesibles en segundos en lugar de minutos.
+- **~30%** de reducción en duplicidad de registros de pacientes mediante validación en el alta.
+
 ## Requisitos
 
 - PHP 7.4 o superior
