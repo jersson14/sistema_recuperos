@@ -103,3 +103,7 @@ El archivo `model/model_conexion.php` **no está versionado**. Usar `model/model
 - Las fotos de pacientes se almacenan en `Fotos/` (no incluidas en el repositorio).
 - Los archivos PDF de prácticas se almacenan en `controller/practicas_paciente/filepracticas/` (no incluidos en el repositorio).
 - El archivo `.sql` de la base de datos **no está en el repositorio** por seguridad; solicitarlo al equipo de desarrollo.
+
+## Derechos de autor
+
+© 2026 Jersson. Todos los derechos reservados.
