@@ -1,16 +1,79 @@
 # SISRECUPEROS
 
-Sistema web de gestión de recuperos médicos. Permite administrar pacientes, obras sociales, prácticas, facturación y usuarios del sistema.
+![PHP](https://img.shields.io/badge/PHP-7.4%2B-777BB4?logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-5.7%2B-4479A1?logo=mysql&logoColor=white)
+![Architecture](https://img.shields.io/badge/Architecture-MVC-blue)
+![License](https://img.shields.io/badge/License-Proprietary-lightgrey)
 
-## Beneficios estimados frente a la gestión manual en papel
+Sistema web de gestión de recuperos médicos. Permite administrar pacientes, obras sociales, prácticas, facturación y usuarios del sistema bajo una arquitectura **MVC** en PHP nativo con persistencia en MySQL vía **PDO**.
+
+## Tabla de contenidos
+
+- [Impacto estimado](#impacto-estimado-frente-a-la-gestión-manual-en-papel)
+- [Arquitectura](#arquitectura)
+- [Requisitos](#requisitos)
+- [Instalación](#instalación)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Módulos](#módulos)
+- [Configuración de conexión](#configuración-de-conexión)
+- [Notas](#notas)
+- [Derechos de autor](#derechos-de-autor)
+
+## Impacto estimado frente a la gestión manual en papel
 
 > Estimaciones basadas en mejoras típicas al digitalizar procesos administrativos en salud; no son mediciones formales del proyecto.
 
-- **~70%** menos tiempo en la búsqueda de historiales de pacientes (consulta centralizada vs. archivo físico).
-- **~50%** de reducción en errores de carga de prácticas y facturación gracias a formularios validados.
-- **~40%** menos tiempo administrativo en la conciliación de facturas con obras sociales.
-- **~90%** de los archivos adjuntos (HC/recetas en PDF) accesibles en segundos en lugar de minutos.
-- **~30%** de reducción en duplicidad de registros de pacientes mediante validación en el alta.
+| Indicador | Mejora estimada | Antes (proceso manual) | Después (SISRECUPEROS) |
+| --- | --- | --- | --- |
+| Búsqueda de historiales de pacientes | **↓ 70%** | Búsqueda en archivo físico | Consulta centralizada en BD |
+| Errores de carga en prácticas y facturación | **↓ 50%** | Carga manual sin validación | Formularios con validación en alta |
+| Tiempo de conciliación de facturas con obras sociales | **↓ 40%** | Cruce manual de planillas | Vinculación directa paciente-práctica-factura |
+| Acceso a archivos adjuntos (HC/recetas en PDF) | **↑ 90%** más rápido | Búsqueda física en carpetas | Acceso digital en segundos |
+| Duplicidad de registros de pacientes | **↓ 30%** | Sin validación de duplicados | Validación de datos en el alta |
+
+## Arquitectura
+
+Patrón **MVC** desacoplado: las vistas consumen datos de los controladores por módulo, y estos delegan el acceso a datos a los modelos vía PDO.
+
+```mermaid
+flowchart LR
+    U[Usuario / Navegador] --> V[View<br/>Vistas por módulo]
+    V --> C[Controller<br/>Lógica por módulo]
+    C --> M[Model<br/>Acceso a datos - PDO]
+    M --> DB[(MySQL<br/>recupero)]
+
+    subgraph Módulos
+        direction TB
+        Pac[Pacientes]
+        Obr[Obras Sociales]
+        Pra[Prácticas]
+        PP[Prácticas-Paciente]
+        Fac[Facturas]
+        Are[Área]
+        Emp[Empresa]
+        Usu[Usuarios]
+    end
+
+    C --- Módulos
+```
+
+```text
+┌─────────────────────────────┐
+│            VIEW             │  Vistas HTML/PHP por módulo
+└──────────────┬──────────────┘
+               │
+┌──────────────▼──────────────┐
+│          CONTROLLER          │  Lógica de negocio por módulo
+└──────────────┬──────────────┘
+               │
+┌──────────────▼──────────────┐
+│            MODEL             │  Acceso a datos (PDO)
+└──────────────┬──────────────┘
+               │
+┌──────────────▼──────────────┐
+│         MySQL (recupero)     │
+└───────────────────────────────┘
+```
 
 ## Requisitos
 
@@ -75,16 +138,16 @@ SISRECUPEROS/
 
 ## Módulos
 
-| Módulo               | Descripción                                               |
-| -------------------- | --------------------------------------------------------- |
-| Pacientes            | Alta, edición y búsqueda de pacientes                     |
-| Obras Sociales       | Gestión de obras sociales y planes                        |
-| Prácticas            | Catálogo de prácticas médicas                             |
-| Prácticas-Paciente   | Asignación de prácticas a pacientes con archivos adjuntos |
-| Facturas             | Emisión y archivo de facturas                             |
-| Área                 | Gestión de áreas del sistema                              |
-| Empresa              | Datos de la empresa                                       |
-| Usuarios             | Administración de usuarios y accesos                      |
+| Módulo | Descripción |
+| --- | --- |
+| Pacientes | Alta, edición y búsqueda de pacientes |
+| Obras Sociales | Gestión de obras sociales y planes |
+| Prácticas | Catálogo de prácticas médicas |
+| Prácticas-Paciente | Asignación de prácticas a pacientes con archivos adjuntos |
+| Facturas | Emisión y archivo de facturas |
+| Área | Gestión de áreas del sistema |
+| Empresa | Datos de la empresa |
+| Usuarios | Administración de usuarios y accesos |
 
 ## Configuración de conexión
 
